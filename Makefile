@@ -18,12 +18,13 @@ OTHER_SOURCES += foo4/foo2/foo2.cpp
 OTHER_INCLUDES += -Ifoo4/foo2
 
 
-# список первых сырцов
+# из списка сырцов делаем список объектов(цели)
 OBJECTS += $(addprefix $(BUILD_DIR)/inner/,$(notdir $(SOURCES:.cpp=.o)))
 # чтобы работало %.o: %.cpp в целях
 vpath %.cpp $(sort $(dir $(SOURCES))) 
 
-# список вторых сырцов, чтобы make видел разницу, их собираем в другую папку
+# из второго списка сырцов делаем список объектов(цели)
+# , чтобы make видел разницу, их собираем в другую папку
 OTHER_OBJECTS += $(addprefix $(BUILD_DIR)/inner2/,$(notdir $(OTHER_SOURCES:.cpp=.o)))
 vpath %.cpp $(sort $(dir $(OTHER_SOURCES)))
 
